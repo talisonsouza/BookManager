@@ -1,10 +1,12 @@
-using BookManager.Database;
+using BookManager.Repository.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using BookManager.Repository.Interfaces;
+using BookManager.Repository;
 
 namespace BookManager
 {
@@ -20,6 +22,8 @@ namespace BookManager
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<DataBaseContext, DataBaseContext>();
+            services.AddTransient<IBookRepository, BookRepository>();
             services.AddControllers();            
             services.AddDbContext<DataBaseContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
