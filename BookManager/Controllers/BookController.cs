@@ -1,5 +1,7 @@
-﻿using BookManager.Database;
+﻿using BookManager.Repository.Context;
+using BookManager.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,17 +21,31 @@ namespace BookManager.Controllers
         }
 
         [HttpGet]
-        public string Index()
+        public async Task<IActionResult>  Index()
         {
+            var books = await _context.Book.ToListAsync();
 
-            var books = _context.Book.ToList();
-            string ret = "";
-            foreach (var item in books)
+            if(books.Count > 0)            
+                return Ok(books);            
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        public string Index(Book data)
+        {
+            try
             {
-                ret += $"${item.Name}---";
+                _context.Book.Add(data);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
 
-            return ret;
+            return "ok";                       
         }
+
     }
 }

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookManager.Models
+namespace BookManager.Entities
 {
-    public class Editor
+    public class Author
     {
-        public int EditorId { get; set; }
+
+        public int AuthorId { get; set; }
 
         public string Name { get; set; }
 
