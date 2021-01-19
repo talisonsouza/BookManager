@@ -7,13 +7,23 @@ namespace BookManager.Entities
 {
     public class Book
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string ISBN { get; set; }
-        public int numberPages { get; set; }
-        public int AuthorId { get; set; }
-        public Author Author { get; set; }
-        public int EditorId { get; set; }
-        public Editor Editor { get; set; }
+
+        public Book(string name, string isbn, int numberPages, int authorId, int editorId)
+        {            
+            Name = name;
+            ISBN = isbn;
+            NumberPages = numberPages;
+            AuthorId = authorId;
+            EditorId = editorId;
+        }
+
+        public int Id { get; private set; }
+        public string Name { get; private set; }
+        public string ISBN { get; private set; }
+        public int NumberPages { get; private set; }
+        public int AuthorId { get; private set; }
+        public Author Author { get; private set; }
+        public int EditorId { get; private set; }
+        public Editor Editor { get; private set; }
     }
 }
