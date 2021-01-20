@@ -19,7 +19,7 @@ namespace BookManager.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.2");
 
-            modelBuilder.Entity("BookManager.Models.Author", b =>
+            modelBuilder.Entity("BookManager.Entities.Author", b =>
                 {
                     b.Property<int>("AuthorId")
                         .ValueGeneratedOnAdd()
@@ -38,7 +38,7 @@ namespace BookManager.Migrations
                     b.ToTable("Author");
                 });
 
-            modelBuilder.Entity("BookManager.Models.Book", b =>
+            modelBuilder.Entity("BookManager.Entities.Book", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -62,7 +62,7 @@ namespace BookManager.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasColumnName("Name");
 
-                    b.Property<int>("numberPages")
+                    b.Property<int>("NumberPages")
                         .HasColumnType("int")
                         .HasColumnName("numberPages");
 
@@ -76,7 +76,28 @@ namespace BookManager.Migrations
                     b.ToTable("Book");
                 });
 
-            modelBuilder.Entity("BookManager.Models.Editor", b =>
+            modelBuilder.Entity("BookManager.Entities.BookUser", b =>
+                {
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("BookRead")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("BorrowedBook")
+                        .HasColumnType("bit");
+
+                    b.HasKey("BookId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("BookUsers");
+                });
+
+            modelBuilder.Entity("BookManager.Entities.Editor", b =>
                 {
                     b.Property<int>("EditorId")
                         .ValueGeneratedOnAdd()
@@ -95,15 +116,39 @@ namespace BookManager.Migrations
                     b.ToTable("Editor");
                 });
 
-            modelBuilder.Entity("BookManager.Models.Book", b =>
+            modelBuilder.Entity("BookManager.Entities.User", b =>
                 {
-                    b.HasOne("BookManager.Models.Author", "Author")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("AuthorId")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)")
+                        .HasColumnName("Email");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)")
+                        .HasColumnName("Name");
+
+                    b.HasKey("Id")
+                        .HasName("UserId");
+
+                    b.ToTable("User");
+                });
+
+            modelBuilder.Entity("BookManager.Entities.Book", b =>
+                {
+                    b.HasOne("BookManager.Entities.Author", "Author")
                         .WithMany("Books")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BookManager.Models.Editor", "Editor")
+                    b.HasOne("BookManager.Entities.Editor", "Editor")
                         .WithMany("Books")
                         .HasForeignKey("EditorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -114,14 +159,43 @@ namespace BookManager.Migrations
                     b.Navigation("Editor");
                 });
 
-            modelBuilder.Entity("BookManager.Models.Author", b =>
+            modelBuilder.Entity("BookManager.Entities.BookUser", b =>
+                {
+                    b.HasOne("BookManager.Entities.Book", "Book")
+                        .WithMany("BookUsers")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BookManager.Entities.User", "User")
+                        .WithMany("BookUsers")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("BookManager.Entities.Author", b =>
                 {
                     b.Navigation("Books");
                 });
 
-            modelBuilder.Entity("BookManager.Models.Editor", b =>
+            modelBuilder.Entity("BookManager.Entities.Book", b =>
+                {
+                    b.Navigation("BookUsers");
+                });
+
+            modelBuilder.Entity("BookManager.Entities.Editor", b =>
                 {
                     b.Navigation("Books");
+                });
+
+            modelBuilder.Entity("BookManager.Entities.User", b =>
+                {
+                    b.Navigation("BookUsers");
                 });
 #pragma warning restore 612, 618
         }

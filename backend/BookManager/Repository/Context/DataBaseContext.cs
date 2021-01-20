@@ -8,6 +8,9 @@ namespace BookManager.Repository.Context
         public DbSet<Book> Book { get; set; }
         public DbSet<Editor> Editor { get; set; }
         public DbSet<Author> Author { get; set; }
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<BookUser> BookUsers { get; set; }
 
         public DataBaseContext(DbContextOptions<DataBaseContext> options)
         : base(options)
@@ -19,6 +22,35 @@ namespace BookManager.Repository.Context
             BookConfig(modelBuilder);
             AuthorConfig(modelBuilder);
             EditorConfig(modelBuilder);
+            UserConfig(modelBuilder);
+            BookUserConfig(modelBuilder);
+        }
+
+
+        private void BookUserConfig(ModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Entity<BookUser>().HasKey(bu => new { bu.BookId, bu.UserId });
+            modelBuilder.Entity<BookUser>()
+                .HasOne(bu => bu.Book).WithMany(bu => bu.BookUsers).HasForeignKey(b => b.BookId);
+
+            modelBuilder.Entity<BookUser>()
+                .HasOne(bu => bu.User).WithMany(bu => bu.BookUsers).HasForeignKey(u => u.UserId);
+
+        }
+
+
+        private void UserConfig(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>(e =>
+            {
+                e.ToTable("User");
+                e.HasKey(c => c.Id).HasName("UserId");
+                e.Property(c => c.Id).HasColumnName("AuthorId").ValueGeneratedOnAdd();
+                e.Property(c => c.Name).HasColumnName("Name").HasMaxLength(200);
+                e.Property(c => c.Email).HasColumnName("Email").HasMaxLength(200);
+
+            });            
         }
 
         private void AuthorConfig(ModelBuilder modelBuilder)

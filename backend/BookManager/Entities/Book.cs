@@ -28,5 +28,7 @@ namespace BookManager.Entities
         public Author Author { get; private set; }
         public int EditorId { get; private set; }
         public Editor Editor { get; private set; }
+
+        public ICollection<BookUser> BookUsers { get; set; }
     }
 }
