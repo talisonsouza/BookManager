@@ -35,16 +35,34 @@ namespace BookManager.Controllers
         }
 
         [HttpPost]
-        public async Task<CommandResult> Index([FromBody]CreateBookModel model)
+        public CommandResult Index([FromBody]CreateBookModel model)
         {
             try
             {
-                return await _handler.Create(model);
+                return _handler.Create(model);
             }
             catch (Exception ex)
             {
                 return new CommandResult { Success = false, Message = ex.Message };
             } 
+        }
+
+        [HttpDelete]
+        public CommandResult Delete(int id)
+        {
+            try
+            {
+                _repository.Delete(id);
+                return new CommandResult
+                {
+                    Success = true,
+                    Message = "Registro deletado com sucesso!"
+                };
+            }
+            catch (Exception ex)
+            {
+                return new CommandResult { Success = false, Message = ex.Message };
+            }
         }
 
     }

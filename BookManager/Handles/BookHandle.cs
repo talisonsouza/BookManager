@@ -2,6 +2,8 @@
 using BookManager.Models;
 using BookManager.Models.Book;
 using BookManager.Repository.Context;
+using BookManager.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,19 +13,19 @@ namespace BookManager.Handles
 {
     public class BookHandle
     {
-        private readonly DataBaseContext _context;
+        private readonly IBookRepository _repository;
 
-        public BookHandle(DataBaseContext context)
+        public BookHandle(IBookRepository repository)
         {
-            this._context = context;
+            this._repository = repository;
         }
 
-        public async Task<CommandResult> Create(CreateBookModel book)
+        public CommandResult Create(CreateBookModel book)
         {
+            
             var _book = new Book(book.Name,book.ISBN,book.NumberPages,book.AuthorId, book.EditorId);
 
-             _context.Book.Add(_book);
-            await _context.SaveChangesAsync();
+            _repository.Save(_book);            
 
             return new CommandResult
             {
@@ -32,6 +34,5 @@ namespace BookManager.Handles
                 Data = null
             };
         }
-
     }
 }
