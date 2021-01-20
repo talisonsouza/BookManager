@@ -1,5 +1,6 @@
 ﻿using BookManager.Entities;
 using BookManager.Models;
+using BookManager.Models.Book;
 using BookManager.Repository.Context;
 using System;
 using System.Collections.Generic;
@@ -17,12 +18,12 @@ namespace BookManager.Handles
             this._context = context;
         }
 
-        public  CommandResult Create(Book book)
+        public async Task<CommandResult> Create(CreateBookModel book)
         {
             var _book = new Book(book.Name,book.ISBN,book.NumberPages,book.AuthorId, book.EditorId);
 
              _context.Book.Add(_book);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return new CommandResult
             {

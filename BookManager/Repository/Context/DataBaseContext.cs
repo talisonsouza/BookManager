@@ -59,7 +59,7 @@ namespace BookManager.Repository.Context
                 etd.Property(c => c.Id).HasColumnName("Id").ValueGeneratedOnAdd();
                 etd.Property(c => c.Name).HasColumnName("Name").HasMaxLength(100);                
                 etd.Property(c => c.ISBN).HasColumnName("ISBN").HasMaxLength(100);
-                etd.Property(c => c.numberPages).HasColumnName("numberPages");
+                etd.Property(c => c.NumberPages).HasColumnName("numberPages");
             });
 
             modelBuilder.Entity<Book>().HasOne(c => c.Author);

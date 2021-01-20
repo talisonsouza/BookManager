@@ -8,6 +8,9 @@ namespace BookManager.Entities
     public class Book
     {
 
+        //for EF
+        public Book(){}
+
         public Book(string name, string isbn, int numberPages, int authorId, int editorId)
         {            
             Name = name;

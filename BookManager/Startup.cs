@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using BookManager.Repository.Interfaces;
 using BookManager.Repository;
+using BookManager.Handles;
 
 namespace BookManager
 {
@@ -24,6 +25,7 @@ namespace BookManager
         {
             services.AddScoped<DataBaseContext, DataBaseContext>();
             services.AddTransient<IBookRepository, BookRepository>();
+            services.AddTransient<BookHandle, BookHandle>();
             services.AddControllers();            
             services.AddDbContext<DataBaseContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

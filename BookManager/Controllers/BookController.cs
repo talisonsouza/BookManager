@@ -1,6 +1,7 @@
 ﻿using BookManager.Entities;
 using BookManager.Handles;
 using BookManager.Models;
+using BookManager.Models.Book;
 using BookManager.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -34,11 +35,11 @@ namespace BookManager.Controllers
         }
 
         [HttpPost]
-        public CommandResult Index([FromBody]Book book)
+        public async Task<CommandResult> Index([FromBody]CreateBookModel model)
         {
             try
             {
-                return _handler.Create(book);
+                return await _handler.Create(model);
             }
             catch (Exception ex)
             {
