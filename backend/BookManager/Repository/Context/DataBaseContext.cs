@@ -10,8 +10,6 @@ namespace BookManager.Repository.Context
         public DbSet<Author> Author { get; set; }
         public DbSet<User> Users { get; set; }
 
-        public DbSet<BookUser> BookUsers { get; set; }
-
         public DataBaseContext(DbContextOptions<DataBaseContext> options)
         : base(options)
         {

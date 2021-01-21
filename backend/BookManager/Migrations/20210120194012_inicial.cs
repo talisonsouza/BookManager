@@ -85,7 +85,7 @@ namespace BookManager.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BookUsers",
+                name: "BookUser",
                 schema: "tbl",
                 columns: table => new
                 {
@@ -96,16 +96,16 @@ namespace BookManager.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BookUsers", x => new { x.BookId, x.UserId });
+                    table.PrimaryKey("PK_BookUser", x => new { x.BookId, x.UserId });
                     table.ForeignKey(
-                        name: "FK_BookUsers_Book_BookId",
+                        name: "FK_BookUser_Book_BookId",
                         column: x => x.BookId,
                         principalSchema: "tbl",
                         principalTable: "Book",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BookUsers_User_UserId",
+                        name: "FK_BookUser_User_UserId",
                         column: x => x.UserId,
                         principalSchema: "tbl",
                         principalTable: "User",
@@ -126,16 +126,16 @@ namespace BookManager.Migrations
                 column: "EditorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BookUsers_UserId",
+                name: "IX_BookUser_UserId",
                 schema: "tbl",
-                table: "BookUsers",
+                table: "BookUser",
                 column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "BookUsers",
+                name: "BookUser",
                 schema: "tbl");
 
             migrationBuilder.DropTable(

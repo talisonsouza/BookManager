@@ -94,7 +94,7 @@ namespace BookManager.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("BookUsers");
+                    b.ToTable("BookUser");
                 });
 
             modelBuilder.Entity("BookManager.Entities.Editor", b =>

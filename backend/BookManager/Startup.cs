@@ -25,6 +25,7 @@ namespace BookManager
         {
             services.AddScoped<DataBaseContext, DataBaseContext>();
             services.AddTransient<IBookRepository, BookRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<BookHandle, BookHandle>();
             services.AddControllers();            
             services.AddDbContext<DataBaseContext>(options => 

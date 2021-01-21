@@ -13,7 +13,7 @@ namespace BookManager.Entities
         public User(string name, string email)
         {
             this.Name = name;
-            this.Email = email;
+            this.Email = email;            
         }
 
         public int Id { get; set; }

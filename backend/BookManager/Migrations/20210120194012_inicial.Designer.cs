@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookManager.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20210120193448_inicial")]
+    [Migration("20210120194012_inicial")]
     partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -96,7 +96,7 @@ namespace BookManager.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("BookUsers");
+                    b.ToTable("BookUser");
                 });
 
             modelBuilder.Entity("BookManager.Entities.Editor", b =>
