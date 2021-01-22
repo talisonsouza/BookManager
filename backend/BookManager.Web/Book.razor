@@ -1,0 +1,39 @@
+﻿@page "/book"
+@inject Services.ApiService apiService
+<h3>Contatos</h3>
+<hr />
+@if (books == null)
+{
+    <p><em>Carregando...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>ISBN</th>
+                <th>Numero de páginas</th>                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in books)
+            {
+                <tr>
+                    <td>@book.id</td>
+                    <td>@book.name</td>
+                    <td>@book.isbn</td>
+                    <td>@book.numberPages</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@code {
+    List<Teste> books;
+    protected override async Task OnInitializedAsync()
+    {
+        books = await apiService.GetBookAsync();
+    }
+}

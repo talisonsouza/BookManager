@@ -8,6 +8,7 @@ namespace BookManager.Repository.Interfaces
 {
     public interface IBookRepository
     {
+        List<Book> Get();
         Task<List<Book>> GetAsync();
         Task<Book> GetAsync(int id);
         void Delete(int id);

@@ -5,6 +5,7 @@ using BookManager.Models.Book;
 using BookManager.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,18 +24,24 @@ namespace BookManager.Controllers
             _handler = handle;
         }
 
+        //[HttpGet]
+        //public string Index()
+        //{            
+        //    return "rodrigo";
+        //}
+   
         [HttpGet]
         public async Task<IActionResult> Index(int Id = 0)
         {
             object book = null;
 
-            if (Id > 0)            
-                book = await _repository.GetAsync(Id);            
-            else            
+            if (Id > 0)
+                book = await _repository.GetAsync(Id);
+            else
                 book = await _repository.GetAsync();
 
-            if(book != null)return Ok(book);
-            
+            if (book != null) return Ok(book);
+
             return NotFound();
         }
 

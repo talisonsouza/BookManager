@@ -22,7 +22,7 @@ namespace BookManager.Controllers
         }
 
         [HttpPost]
-        public CommandResult SetSetBookRead([FromBody] UpdateBookRead data)
+        public CommandResult SetBookRead([FromBody] UpdateBookRead data)
         {
             try
             {

@@ -40,6 +40,11 @@ namespace BookManager.Repository
             _context.SaveChanges();
         }
 
+        public void SaveReview(int bookId, int userId, string review)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void SetBookRead(int bookId, int userId, bool bookRead)
         {
             var bookUser = _context.Users.Include(bu => bu.BookUsers).Where(c => c.Id == userId).FirstOrDefault()
@@ -49,12 +54,17 @@ namespace BookManager.Repository
             _context.SaveChanges();
         }
 
-        public void SetBorrowedBook(int bookId, int userId)
+        public void SetBorrowedBook(int bookId, int userId, bool borrowedBook)
         {
-            var bookUser = _context.Users.Where(c => c.Id == userId).FirstOrDefault()
+            var bookUser = _context.Users.Include(bu => bu.BookUsers).Where(c => c.Id == userId).FirstOrDefault()
                     .BookUsers.Where(bu => bu.BookId == bookId).FirstOrDefault();
-            bookUser.SetBorrowedBook(true);
+            bookUser.SetBorrowedBook(borrowedBook);
             _context.SaveChanges();
+        }
+
+        public void SetReviewLike(int bookId, int userId, bool like)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

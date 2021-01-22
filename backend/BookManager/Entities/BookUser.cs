@@ -23,6 +23,25 @@ namespace BookManager.Entities
 
         public bool BorrowedBook { get; private set; }
 
+        public string Review { get; private set; }
+
+        public Int32 ReviewLike { get; private set; }
+
+
+        public void AddReviewLike()
+        {
+            this.ReviewLike++;
+        }
+
+        public void RemoveReviewLike()
+        {
+            this.ReviewLike--;
+        }
+
+        public void SetReview(string review)
+        {
+;            this.Review = review;
+        }
 
         public void SetBookRead(bool bookRead)
         {

@@ -20,6 +20,11 @@ namespace BookManager.Repository
             this._context = context;
         }
 
+        public List<Book> Get()
+        {
+            return _context.Book.ToList();
+        }
+
         public async Task<List<Book>> GetAsync()
         {
             return await _context.Book.ToListAsync();         
@@ -43,5 +48,6 @@ namespace BookManager.Repository
             _context.SaveChanges();
         }
 
+      
     }
 }

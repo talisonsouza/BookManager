@@ -13,6 +13,10 @@ namespace BookManager.Repository.Interfaces
         void Delete(int id);
         void Save(User user);
         void SetBookRead(int bookId, int userId, bool bookRead);
-        void SetBorrowedBook(int bookId, int userId);
+        void SetBorrowedBook(int bookId, int userId, bool borrowedBook);
+
+        void SetReviewLike(int bookId, int userId, bool like);
+
+        void SaveReview(int bookId, int userId, string review);
     }
 }
