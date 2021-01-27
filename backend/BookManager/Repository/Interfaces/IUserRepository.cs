@@ -1,10 +1,10 @@
-﻿using BookManager.Entities;
+﻿using BookManager.API.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookManager.Repository.Interfaces
+namespace BookManager.API.Repository.Interfaces
 {
     public interface IUserRepository
     {

@@ -1,13 +1,13 @@
-using BookManager.Repository.Context;
+using BookManager.API.Repository.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using BookManager.Repository.Interfaces;
-using BookManager.Repository;
-using BookManager.Handles;
+using BookManager.API.Repository.Interfaces;
+using BookManager.API.Repository;
+using BookManager.API.Handles;
 
 namespace BookManager
 {

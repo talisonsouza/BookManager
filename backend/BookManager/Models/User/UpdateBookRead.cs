@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookManager.Models.User
+namespace BookManager.API.Models.User
 {
     public class UpdateBookRead
     {

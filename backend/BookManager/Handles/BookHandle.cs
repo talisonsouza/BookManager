@@ -1,15 +1,15 @@
-﻿using BookManager.Entities;
-using BookManager.Models;
-using BookManager.Models.Book;
-using BookManager.Repository.Context;
-using BookManager.Repository.Interfaces;
+﻿using BookManager.API.Entities;
+using BookManager.API.Models;
+using BookManager.API.Models.Book;
+using BookManager.API.Repository.Context;
+using BookManager.API.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookManager.Handles
+namespace BookManager.API.Handles
 {
     public class BookHandle
     {

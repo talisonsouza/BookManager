@@ -1,15 +1,15 @@
-﻿using BookManager.Entities;
-using BookManager.Handles;
-using BookManager.Models;
-using BookManager.Models.Book;
-using BookManager.Repository.Interfaces;
+﻿using BookManager.API.Entities;
+using BookManager.API.Handles;
+using BookManager.API.Models;
+using BookManager.API.Models.Book;
+using BookManager.API.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookManager.Controllers
+namespace BookManager.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

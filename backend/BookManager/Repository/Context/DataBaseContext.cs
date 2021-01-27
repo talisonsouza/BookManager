@@ -1,7 +1,7 @@
-﻿using BookManager.Entities;
+﻿using BookManager.API.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookManager.Repository.Context
+namespace BookManager.API.Repository.Context
 {
     public class DataBaseContext : DbContext
     {

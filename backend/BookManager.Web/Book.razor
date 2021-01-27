@@ -31,7 +31,7 @@ else
     </table>
 }
 @code {
-    List<Teste> books;
+    List<GetBookResult> books;
     protected override async Task OnInitializedAsync()
     {
         books = await apiService.GetBookAsync();

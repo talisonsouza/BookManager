@@ -1,13 +1,13 @@
-﻿using BookManager.Models;
-using BookManager.Models.User;
-using BookManager.Repository.Interfaces;
+﻿using BookManager.API.Models;
+using BookManager.API.Models.User;
+using BookManager.API.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookManager.Controllers
+namespace BookManager.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

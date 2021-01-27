@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookManager.Models
+namespace BookManager.API.Models
 {
     public class CommandResult
     {
