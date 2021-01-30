@@ -17,49 +17,59 @@ namespace BookManager.API.Repository
             this._context = context;
         }
 
-        public void Delete(int id)
+        public async void Delete(int id)
         {
-            var user = _context.Users.Where(b => b.Id == id).FirstOrDefault();
+            var user = _context.Users.AsNoTracking().Where(b => b.Id == id).FirstOrDefault();
             _context.Users.Remove(user);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         public async Task<List<User>> GetAsync()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users.AsNoTracking().ToListAsync();
         }
 
         public async Task<User> GetAsync(int id)
         {
-            return await _context.Users.Where(b => b.Id == id).FirstOrDefaultAsync();
+            return await _context.Users.AsNoTracking().Where(b => b.Id == id).FirstOrDefaultAsync();
         }
 
-        public void Save(User user)
+        public async void Save(User user)
         {
             _context.Add(user);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void SaveReview(int bookId, int userId, string review)
+        public async void SaveReview(int bookId, int userId, string review)
         {
-            throw new System.NotImplementedException();
+            var bookUser = _context.Users.Include(bu => bu.BookUsers).Where(c => c.Id == userId).FirstOrDefault()
+                                .BookUsers.Where(bu => bu.BookId == bookId).FirstOrDefault();
+            
+            if(bookUser != null)
+            {
+                bookUser.SetReview(review);
+                await _context.SaveChangesAsync();
+            }
         }
 
-        public void SetBookRead(int bookId, int userId, bool bookRead)
+        public async void SetBookRead(int bookId, int userId, bool bookRead)
         {
             var bookUser = _context.Users.Include(bu => bu.BookUsers).Where(c => c.Id == userId).FirstOrDefault()
                 .BookUsers.Where(bu => bu.BookId == bookId).FirstOrDefault();
 
-            bookUser.SetBookRead(bookRead);
-            _context.SaveChanges();
+            if(bookUser != null)
+            {
+                bookUser.SetBookRead(bookRead);
+                await _context.SaveChangesAsync();
+            }
         }
 
-        public void SetBorrowedBook(int bookId, int userId, bool borrowedBook)
+        public async void SetBorrowedBook(int bookId, int userId, bool borrowedBook)
         {
             var bookUser = _context.Users.Include(bu => bu.BookUsers).Where(c => c.Id == userId).FirstOrDefault()
                     .BookUsers.Where(bu => bu.BookId == bookId).FirstOrDefault();
             bookUser.SetBorrowedBook(borrowedBook);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         public void SetReviewLike(int bookId, int userId, bool like)

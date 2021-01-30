@@ -1,5 +1,5 @@
 using BookManager.Web.Data;
-using BookManager.Web.Services;
+using BookManager.Web.Services.Book;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;

@@ -1,0 +1,50 @@
+﻿@page "/bookCreate/{id}"
+@inject Services.Book.ApiService apiService
+<h3>BookCreate</h3>
+
+@if (bookResult == null)
+{
+    <p><em>Carregando...</em></p>
+}else
+{ 
+
+    <form>
+        <div class="form-group">
+            <label for="name">Email address</label>
+            <input type="text" value="@bookResult.name" class="form-control" id="name" placeholder="Digite o nome">
+        </div>
+        <div class="form-group">
+            <label for="isbn">Password</label>
+            <input type="text" value="@bookResult.isbn" class="form-control" id="isbn" placeholder="ISBN">
+        </div>
+        <div class="form-group">
+            <label for="numberPages">Numero de páginas</label>
+            <input type="text" value="@bookResult.numberPages" class="form-control" id="numberPages" placeholder="Número de páginas">
+        </div>
+        @*<div class="form-group">
+                <label for="exampleSelect2">Example multiple select</label>
+                <select multiple class="form-control" id="exampleSelect2">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>*@
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+}
+
+
+@code {
+
+    [Parameter]
+    public string Id { get; set; }
+
+    GetBookResult bookResult;
+    protected override async Task OnInitializedAsync()
+    {
+        bookResult = await apiService.GetBookByIdAsync(Id);
+    }
+
+}

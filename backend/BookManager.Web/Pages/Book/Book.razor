@@ -1,5 +1,6 @@
 ﻿@page "/book"
-@inject Services.ApiService apiService
+@inject Services.Book.ApiService apiService
+@inject NavigationManager UriHelper
 <h3>Contatos</h3>
 <hr />
 @if (books == null)
@@ -14,7 +15,8 @@ else
                 <th>ID</th>
                 <th>Nome</th>
                 <th>ISBN</th>
-                <th>Numero de páginas</th>                
+                <th>Numero de páginas</th>
+                <th>Editar</th>
             </tr>
         </thead>
         <tbody>
@@ -25,12 +27,21 @@ else
                     <td>@book.name</td>
                     <td>@book.isbn</td>
                     <td>@book.numberPages</td>
+                    <td>                            
+                        <a href="bookCreate/3"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>Editar</a>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 }
 @code {
+
+    public void edit(int id)
+    {
+        UriHelper.NavigateTo("bookCreate/" + id);
+    }
+
     List<GetBookResult> books;
     protected override async Task OnInitializedAsync()
     {

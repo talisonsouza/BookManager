@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace BookManager.Web.Services
+namespace BookManager.Web.Services.Book
 {
 
     //public class Teste
@@ -43,6 +43,14 @@ namespace BookManager.Web.Services
             using var responseContent = await response.Content.ReadAsStreamAsync();
             return await JsonSerializer.DeserializeAsync<List<GetBookResult>>(responseContent);
         }
-        
+
+        public async Task<GetBookResult> GetBookByIdAsync(string id)
+        {
+            var response = await _httpClient.GetAsync($"book?id={id}");
+            response.EnsureSuccessStatusCode();
+            using var responseContent = await response.Content.ReadAsStreamAsync();
+            return await JsonSerializer.DeserializeAsync<GetBookResult>(responseContent);
+        }
+
     }
 }
