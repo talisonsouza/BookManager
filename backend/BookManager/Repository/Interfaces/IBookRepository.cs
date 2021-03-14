@@ -11,6 +11,7 @@ namespace BookManager.API.Repository.Interfaces
         List<Book> Get();
         Task<List<Book>> GetAsync();
         Task<Book> GetAsync(int id);
+        Task Update(Book book);
         void Delete(int id);
         void Save(Book book);
     }

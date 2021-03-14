@@ -45,6 +45,20 @@ namespace BookManager.API.Controllers
             return NotFound();
         }
 
+
+        [HttpGet("GetObj")]
+        public IActionResult GetObject()
+        {
+            object book = new 
+            { 
+                Codigo=1,
+                Descricao=""
+            };          
+
+            return Ok(book);            
+        }
+
+
         [HttpPost]
         public CommandResult Index([FromBody]CreateBookModel model)
         {
@@ -56,6 +70,20 @@ namespace BookManager.API.Controllers
             {
                 return new CommandResult { Success = false, Message = ex.Message };
             } 
+        }
+
+        [HttpPut("atualizar")]
+        public CommandResult Update([FromBody] Book book)
+        {
+            try
+            {
+                _repository.Update(book);
+                return new CommandResult { Success = true, Message = "Dados atualizados com sucesso!" };
+            }
+            catch (Exception ex)
+            {
+                return new CommandResult { Success = false, Message = ex.Message };
+            }
         }
 
         [HttpDelete]

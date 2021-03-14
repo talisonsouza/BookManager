@@ -1,50 +1,43 @@
 ﻿@page "/bookCreate/{id}"
-@inject Services.Book.ApiService apiService
+@inject Services.Books.ApiService apiService
 <h3>BookCreate</h3>
 
-@if (bookResult == null)
+@if (book == null)
 {
     <p><em>Carregando...</em></p>
-}else
-{ 
-
-    <form>
-        <div class="form-group">
-            <label for="name">Email address</label>
-            <input type="text" value="@bookResult.name" class="form-control" id="name" placeholder="Digite o nome">
-        </div>
-        <div class="form-group">
-            <label for="isbn">Password</label>
-            <input type="text" value="@bookResult.isbn" class="form-control" id="isbn" placeholder="ISBN">
-        </div>
-        <div class="form-group">
-            <label for="numberPages">Numero de páginas</label>
-            <input type="text" value="@bookResult.numberPages" class="form-control" id="numberPages" placeholder="Número de páginas">
-        </div>
-        @*<div class="form-group">
-                <label for="exampleSelect2">Example multiple select</label>
-                <select multiple class="form-control" id="exampleSelect2">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </div>*@
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
 }
+else
+{
 
+<div class="container">
 
-@code {
+    <EditForm EditContext="@editContext">
+        <DataAnnotationsValidator />        
+        <div class="row">
+            <div class="col-md-4 col-xs-4">
+                <div class="form-group">
+                    <label for="name">Email address</label>
+                    <input type="text" @bind-value="@book.Name" class="form-control" placeholder="Digite o nome">
+                    <ValidationMessage For="@(() => book.Name)" />
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-4">
+                <div class="form-group">
+                    <label for="name">ISBN</label>
+                    <input type="text" @bind-value="@book.ISBN" class="form-control" placeholder="ISBN">
+                    <ValidationMessage For="@(() => book.ISBN)" />
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-4">
+                <div class="form-group">
+                    <label for="isbn">Numero de paginas</label>
+                    <input type="text" @bind-value="@book.NumberPages" class="form-control" id="isbn" placeholder="Numero de paginas">
+                </div>
+            </div>         
+        </div>
 
-    [Parameter]
-    public string Id { get; set; }
+        <button @onclick="handleSubmitClick" type="submit" class="btn btn-primary">ENVIAR</button>
 
-    GetBookResult bookResult;
-    protected override async Task OnInitializedAsync()
-    {
-        bookResult = await apiService.GetBookByIdAsync(Id);
-    }
-
+    </EditForm>
+</div>
 }

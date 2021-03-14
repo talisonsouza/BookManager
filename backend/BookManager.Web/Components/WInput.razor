@@ -1,0 +1,45 @@
+﻿
+@if (!string.IsNullOrEmpty(Caption))
+{
+    <label>@Caption</label>
+    <InputText class="@ClassName" placeholder="@PlaceHolder" @bind-Value="Value" />
+    @*<input type="text" class="@ClassName" placeholder="@PlaceHolder" @bind-value="Value" />*@
+}
+
+
+
+@code {
+
+    private void onChange(Microsoft.AspNetCore.Components.ChangeEventArgs args)
+    {
+        // value = (string)args.Value;
+    }
+
+
+    [Parameter]
+    public string Value
+    {
+        get => _value;
+        set
+        {
+            if (_value == value) return;
+            _value = value;
+            onValueChanged.InvokeAsync(value);
+        }
+    }
+    private string _value;
+
+    [Parameter]
+    public EventCallback<string> onValueChanged { get; set; }
+
+
+    [Parameter] public string Caption { get; set; }
+
+
+    //[Parameter]
+    //public string Value { get; set; }
+
+    [Parameter] public string PlaceHolder { get; set; }
+    [Parameter] public string ClassName { get; set; }
+
+}

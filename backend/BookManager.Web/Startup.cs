@@ -1,5 +1,5 @@
 using BookManager.Web.Data;
-using BookManager.Web.Services.Book;
+using BookManager.Web.Services.Books;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace BookManager.Web
@@ -34,6 +35,7 @@ namespace BookManager.Web
             {
                 client.BaseAddress = new Uri("https://localhost:44397");
             });
+        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

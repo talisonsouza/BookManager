@@ -33,7 +33,14 @@ namespace BookManager.API.Repository
         public async Task<Book> GetAsync(int id)
         {
             return await _context.Book.Where(b => b.Id == id).FirstOrDefaultAsync();
-        } 
+        }
+
+        public async Task Update(Book book)
+        {
+            _context.Entry(book).State = EntityState.Modified;            
+             await _context.SaveChangesAsync();
+        }
+
 
         public void Delete(int id)
         {
