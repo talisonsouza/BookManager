@@ -1,4 +1,5 @@
 using BookManager.Web.Data;
+using BookManager.Web.Services;
 using BookManager.Web.Services.Books;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
@@ -35,7 +36,7 @@ namespace BookManager.Web
             {
                 client.BaseAddress = new Uri("https://localhost:44397");
             });
-        
+            services.AddScoped<ToastService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,122 @@
+﻿.stepbar
+{
+    text-align: center;
+    border: 1px solid #f2f2f2;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    padding: 7px;
+    width: 92%;
+    margin: auto;
+}
+
+.fa-user-alt
+{
+    font-size: 33px;
+}
+
+
+
+.stepbar-item
+{
+    display: inline-block;
+    vertical-align: top;
+    width: 33%;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: Lato-Regular;
+    color: #e5e5e5;
+    position: relative;
+    letter-spacing: .5px;
+    word-break: break-all;
+}
+
+.avatar
+{
+    color: #e5e5e5;
+}
+
+.avatar-active
+{
+    color: #00a6b0
+}
+
+
+.item-active
+{
+    color: #757a82;
+    background-color: #00a6b0;
+}
+
+.form-btn-add
+{
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 9px;
+    color: #00cad1;
+    border-color: #00cad1;
+    background-color: #fff !important;
+}
+
+.btn-content
+{
+    margin-top: 20px
+}
+
+.arrow-stepbar-item
+{
+    top: 16px;
+    position: absolute;
+    right: -5px;
+}
+
+
+.activeAvatarText
+{
+    color: #757a82;
+}
+
+.avatarText
+{
+    color: #e5e5e5;
+}
+
+@media (min-width: 768px)
+{
+}
+
+@media (min-width: 992px)
+{
+    .stepbar-item
+    {
+        word-break: break-all;
+        font-size: 12px;
+    }
+
+    .arrow-stepbar-item
+    {
+        top: 11px;
+        right: 6px;
+        font-size: 23px;
+    }
+}
+
+@media (min-width: 1200px)
+{
+
+    .stepbar
+    {
+        padding: 25px;
+        width: 84%;
+    }
+}

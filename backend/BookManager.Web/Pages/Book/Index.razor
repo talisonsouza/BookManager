@@ -1,8 +1,11 @@
 ﻿@page "/book"
 @inject Services.Books.ApiService apiService
 @inject NavigationManager UriHelper
+@inject NavigationManager NavigationManager
+
 <h3>Contatos</h3>
-<hr />
+
+<button type="button" @onclick="@(() => NavigationManager.NavigateTo($"BookCreate") )" @onclick:preventDefault="true" class="btn btn-primary">Criar</button>
 @if (books == null)
 {
     <p><em>Carregando...</em></p>

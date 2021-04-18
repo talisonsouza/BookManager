@@ -71,8 +71,8 @@ namespace BookManager.API.Repository.Context
             modelBuilder.Entity<Editor>(e =>
             {
                 e.ToTable("Editor");
-                e.HasKey(c => c.EditorId).HasName("EditorId");
-                e.Property(c => c.EditorId).HasColumnName("EditorId").ValueGeneratedOnAdd();
+                e.HasKey(c => c.Id).HasName("EditorId");
+                e.Property(c => c.Id).HasColumnName("EditorId").ValueGeneratedOnAdd();
                 e.Property(c => c.Name).HasColumnName("Name").HasMaxLength(100);
             });
 

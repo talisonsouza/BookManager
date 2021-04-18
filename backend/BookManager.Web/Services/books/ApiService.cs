@@ -3,15 +3,18 @@ using BookManager.API.Entities;
 using BookManager.API.Models;
 using BookManager.API.Models.Book.Queries;
 using BookManager.Web.Models;
+using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+
 
 namespace BookManager.Web.Services.Books
 {
@@ -32,7 +35,8 @@ namespace BookManager.Web.Services.Books
     }    
 
     public class ApiService
-    {
+    {   
+
         public HttpClient _httpClient;
         public ApiService(HttpClient client)
         {
@@ -54,15 +58,29 @@ namespace BookManager.Web.Services.Books
             try
             {
                 var result = await _httpClient.PutAsJsonAsync($"book/atualizar/", book);
-                result.EnsureSuccessStatusCode();
-
+                result.EnsureSuccessStatusCode();                
                 return new CommandResult { Message = "Dados atualizados com sucess!", Success = true };
             }
             catch (Exception ex)
             {
-                return new CommandResult { Message = ex.Message, Success = true };                
+                return new CommandResult { Message = ex.Message, Success = false };                
             }
             
+        }
+
+        public async Task<CommandResult> Insert(Book book)
+        {
+            try
+            {
+                var result = await _httpClient.PostAsJsonAsync($"book/insert/", book);                
+                result.EnsureSuccessStatusCode();
+                return new CommandResult { Message = "Dados cadastrados com sucesso!", Success = true };
+            }
+            catch (Exception ex)
+            {
+                return new CommandResult { Message = ex.Message, Success = false };
+            }
+
         }
 
     }

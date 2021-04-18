@@ -20,12 +20,12 @@ namespace BookManager.API.Handles
             this._repository = repository;
         }
 
-        public CommandResult Create(CreateBookModel book)
+        public CommandResult Create(Book book)
         {
             
             var _book = new Book(book.Name,book.ISBN,book.NumberPages,book.AuthorId, book.EditorId);
 
-            _repository.Save(_book);            
+            _repository.Save(_book);              
 
             return new CommandResult
             {

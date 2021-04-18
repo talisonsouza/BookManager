@@ -59,12 +59,12 @@ namespace BookManager.API.Controllers
         }
 
 
-        [HttpPost]
-        public CommandResult Index([FromBody]CreateBookModel model)
+        [HttpPost("insert")]
+        public CommandResult Index([FromBody] Book book)
         {
             try
             {
-                return _handler.Create(model);
+                return _handler.Create(book);
             }
             catch (Exception ex)
             {
