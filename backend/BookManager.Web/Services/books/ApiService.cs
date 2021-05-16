@@ -83,5 +83,21 @@ namespace BookManager.Web.Services.Books
 
         }
 
+
+        public async Task<CommandResult> Delete(int id)
+        {
+            try
+            {
+                var result = await _httpClient.DeleteAsync($"book/delete?id={id}");
+                result.EnsureSuccessStatusCode();
+                return new CommandResult { Message = "Dados cadastrados com sucesso!", Success = true };
+            }
+            catch (Exception ex)
+            {
+                return new CommandResult { Message = ex.Message, Success = false };
+            }
+
+        }
+
     }
 }

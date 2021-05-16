@@ -21,5 +21,20 @@ namespace BookManager.Web.Pages.Book
 
             books = await apiService.GetBookAsync();
         }
+
+
+        public async Task Delete(int id)
+        {
+            var result = await apiService.Delete(id);
+            if (result.Success)
+            {
+                toastService.ShowToast(result.Message, Services.ToastLevel.Success);
+                await OnInitializedAsync();
+            }
+            else
+            {
+                toastService.ShowToast("Erro ao deletar registro", Services.ToastLevel.Error);
+            }
+        }
     }
 }

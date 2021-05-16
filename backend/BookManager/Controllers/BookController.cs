@@ -86,7 +86,7 @@ namespace BookManager.API.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("delete")]
         public CommandResult Delete(int id)
         {
             try
